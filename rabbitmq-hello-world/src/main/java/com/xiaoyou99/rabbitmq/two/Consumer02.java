@@ -26,7 +26,7 @@ public class Consumer02 implements Runnable {
                 System.out.println("Theard " + threadName + " cancels");
             };
             channel.basicConsume(QUEUE_NAME, true, deliverCallback, cancelCallback);
-            Thread.sleep(5 * 1000);
+            Thread.sleep(50 * 1000);
             System.out.println("test");
         } catch (Exception e) {
             e.printStackTrace();
