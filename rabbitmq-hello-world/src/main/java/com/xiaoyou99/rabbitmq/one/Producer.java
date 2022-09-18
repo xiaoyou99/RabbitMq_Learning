@@ -38,11 +38,10 @@ public class Producer {
              * 发送消息
              * 参数1：Exchange
              * 参数2：router key
-             * 参数3：设置mandatory标志位。指定了exchange无法找到符合条件的queue时的处理方式
-             * 参数4：其他参数信息
-             * 参数5：要发送的消息
+             * 参数3：其他参数信息
+             * 参数4：要发送的消息
              */
-            channel.basicPublish("", QUEUE_NAME, true, null, message.getBytes());
+            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
         }
         System.out.println("Send Message done...");
     }
