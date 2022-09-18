@@ -1,7 +1,8 @@
 package com.xiaoyou99.rabbitmq.two;
 
 import com.rabbitmq.client.Channel;
-import com.xiaoyou99.rabbitmq.utils.RabbitMqUtils;
+import com.xiaoyou99.rabbitmq.utils.ConnectionHolder;
+import com.xiaoyou99.rabbitmq.utils.RabbitMqConfig;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,7 +13,9 @@ public class Producer02 {
     private static final String QUEUE_NAME = "hello";
 
     public static void main(String[] args) throws IOException, TimeoutException {
-        try(Channel channel = RabbitMqUtils.createChannel()) {
+        RabbitMqConfig config = new RabbitMqConfig("localhost", "admin", "password");
+        try(ConnectionHolder holder = ConnectionHolder.build(config);
+            Channel channel = holder.createChannel()) {
             /**
              * 定义队列
              * 参数1：队列名称
