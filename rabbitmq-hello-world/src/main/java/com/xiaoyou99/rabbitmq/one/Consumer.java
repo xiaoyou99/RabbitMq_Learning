@@ -3,6 +3,7 @@ package com.xiaoyou99.rabbitmq.one;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -22,7 +23,7 @@ public class Consumer {
              Channel channel = connection.createChannel()) {
             // 设置回调
             DeliverCallback deliverCallback = (consumerTag, message) -> {
-                System.out.println("deliverCallback: " + new String(message.getBody()));
+                System.out.println("deliverCallback: " + new String(message.getBody(), StandardCharsets.UTF_8));
             };
             CancelCallback cancelCallback = (consumerTag) -> {
                 System.out.println("cancelCallback: " + consumerTag);
